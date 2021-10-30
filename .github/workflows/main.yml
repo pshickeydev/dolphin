@@ -68,13 +68,14 @@ jobs:
           echo "GIT_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
           echo "CURR_DATE=$(date +%Y-%m-%d)" >> $GITHUB_ENV
       - uses: seanmiddleditch/gha-setup-ninja@master
+      - uses: egor-tensin/vs-shell@v2
       - name: "Build ${{ matrix.build_type }} Dolphin"
         shell: cmd
         working-directory: ${{ github.workspace }}
         run: |
           mkdir build
           cd build
-          "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+          dir ..\Externals\Qt\Qt5.15.0\msvc2019_64\lib\cmake\Qt5
           cmake ${{ matrix.build_config }} ..
           ninja
       - name: "Package ${{ matrix.build_type }}"
