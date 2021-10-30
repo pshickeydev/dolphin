@@ -7,7 +7,7 @@ CMAKE_FLAGS="-DQt5_DIR=${QT_BREW_PATH}/lib/cmake/Qt5 -DENABLE_NOGUI=false"
 PLAYBACK_CODES_PATH="./Data/PlaybackGeckoCodes/"
 
 DATA_SYS_PATH="./Data/Sys/"
-BINARY_PATH="./build/Binaries/Slippi Dolphin.app/Contents/Resources/"
+BINARY_PATH="./build/Binaries/Slippi_Dolphin.app/Contents/Resources/"
 
 export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/lib:/usr/lib/
 
