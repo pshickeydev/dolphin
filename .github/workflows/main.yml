@@ -208,10 +208,10 @@ jobs:
         include:
           - build_type: Netplay
             artifact_name: macOS-netplay
-            build_config: -DSLIPPI_PLAYBACK=false -DQt5_DIR=$(brew --prefix qt@5)/lib/cmake/Qt5 -DENABLE_NOGUI=false
+            build_config: netplay
           - build_type: Playback
             artifact_name: macOS-playback
-            build_config: -DQt5_DIR=$(brew --prefix qt@5)/lib/cmake/Qt5 -DENABLE_NOGUI=false
+            build_config: playback
     name: "macOS ${{ matrix.build_type }}"
     runs-on: macos-10.15
     steps:
@@ -257,30 +257,17 @@ jobs:
         shell: bash
         working-directory: ${{ github.workspace }}
         run: |
-          mkdir build
-          cd build
-          export LIBRARY_PATH=/usr/lib/
-          cmake ${{ matrix.build_config }} ..
-          make -j7
-      - name: Add Playback Codes
-        if: success() && matrix.build_type == 'Playback'
-        shell: bash
-        working-directory: ${{ github.workspace }}
-        run: |
-          git clone https://github.com/project-slippi/slippi-desktop-app
-          cd ./build/Binaries/
-          cp -Rf ../../Data/Sys ./Dolphin.app/Contents/Resources
-          cp -Rf ../../slippi-desktop-app/app/dolphin-dev/overwrite/Sys ./Dolphin.app/Contents/Resources
+          ./build-mac.sh ${{ matrix.build_config }}
       - name: Package ${{ matrix.build_type }}
         if: success()
         shell: bash
         working-directory: ${{ github.workspace }}
         run: |
           FILE_NAME=${{ env.CURR_DATE }}-${{ env.GIT_HASH }}-${{ env.GIT_TAG }}-${{ matrix.artifact_name }}.tar.gz
-          cp -Rf Data/Sys build/Binaries/Dolphin.app/Contents/Resources/
+          cp -Rf Data/Sys "build/Binaries/Slippi Dolphin.app/Contents/Resources/"
           mkdir artifact
           cd ./build/Binaries/
-          zip -r "${FILE_NAME}" Dolphin.app
+          zip -r "${FILE_NAME}" "Slippi Dolphin.app"
           mv "${FILE_NAME}" ../../artifact/
       - name: "Publish"
         if: success()
