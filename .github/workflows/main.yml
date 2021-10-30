@@ -208,10 +208,10 @@ jobs:
         include:
           - build_type: Netplay
             artifact_name: macOS-netplay
-            build_config: -DSLIPPI_PLAYBACK=false -DQt5_DIR=$(brew --prefix qt)/lib/cmake/Qt5 -DENABLE_NOGUI=false
+            build_config: -DSLIPPI_PLAYBACK=false -DQt5_DIR=$(brew --prefix qt@5)/lib/cmake/Qt5 -DENABLE_NOGUI=false
           - build_type: Playback
             artifact_name: macOS-playback
-            build_config: -DQt5_DIR=$(brew --prefix qt)/lib/cmake/Qt5 -DENABLE_NOGUI=false
+            build_config: -DQt5_DIR=$(brew --prefix qt@5)/lib/cmake/Qt5 -DENABLE_NOGUI=false
     name: "macOS ${{ matrix.build_type }}"
     runs-on: macos-10.15
     steps:
