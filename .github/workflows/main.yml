@@ -250,7 +250,7 @@ jobs:
           libao \
           sound-touch \
           hidapi \
-          qt
+          qt@5
       - name: "Build ${{ matrix.build_type }} Dolphin"
         if: success()
         shell: bash
