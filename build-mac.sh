@@ -9,7 +9,7 @@ PLAYBACK_CODES_PATH="./Data/PlaybackGeckoCodes/"
 DATA_SYS_PATH="./Data/Sys/"
 BINARY_PATH="./build/Binaries/Slippi Dolphin.app/Contents/Resources/"
 
-export LIBRARY_PATH=$LIBRARY_PATH:/usr/lib/
+export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/lib:/usr/lib/
 
 # Build type
 if [ "$1" == "playback" ]

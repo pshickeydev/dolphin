@@ -257,7 +257,7 @@ jobs:
         shell: bash
         working-directory: ${{ github.workspace }}
         run: |
-          ./build-mac.sh ${{ matrix.build_config }}
+          chmod +x ./build-mac.sh && ./build-mac.sh ${{ matrix.build_config }}
       - name: Package ${{ matrix.build_type }}
         if: success()
         shell: bash
